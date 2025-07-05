@@ -1,0 +1,24 @@
+services:
+  php:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: php:8_4_fpm_alpine_custom
+    container_name: container_php_openswoole
+    ports:
+      - "9501:9501"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.4.5
+    container_name: container_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
