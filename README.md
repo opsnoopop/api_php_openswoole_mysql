@@ -2,18 +2,24 @@
 
 A simple PHP openswoole API application and MySQL, containerized with Docker.
 
+
 ## Technology Stack
 
 **PHP openswoole Container: FROM php:8.4-fpm-alpine**
+- OS Alpine Linux: 3.22.0
 - PHP: 8.4.8
 - PDO
 - pdo_mysql
 - OPcache
 - openswoole: 25.2.0
-- Alpine Linux: 3.22.0
 
 **MySQL Container: FROM mysql:8.4.5**
+- OS Oracle Linux Server: 9.6
 - MySQL: 8.4.5
+
+**grafana/k6 Container: FROM grafana/k6:1.1.0**
+- OS Alpine Linux: 3.22.0
+- grafana/k6: 1.1.0
 
 
 ## Getting Started
@@ -87,6 +93,55 @@ CREATE TABLE testdb.users (
   "username":"optest",
   "email":"auttakorn.w@clicknext.com"
 }
+```
+
+
+## Test Performance by grafana/k6
+
+### grafana/k6 test Health Check
+```bash
+docker run \
+--name container_k6 \
+--rm \
+-it \
+--network global_php_openswoole \
+-v ./k6/:/k6/ \
+grafana/k6:1.1.0 \
+run /k6/k6_php_openswoole_health_check.js
+```
+
+### grafana/k6 test Insert Create user
+```bash
+docker run \
+--name container_k6 \
+--rm \
+-it \
+--network global_php_openswoole \
+-v ./k6/:/k6/ \
+grafana/k6:1.1.0 \
+run /k6/k6_php_openswoole_create_user.js
+```
+
+### grafana/k6 test Select Get user by id
+```bash
+docker run \
+--name container_k6 \
+--rm \
+-it \
+--network global_php_openswoole \
+-v ./k6/:/k6/ \
+grafana/k6:1.1.0 \
+run /k6/k6_php_openswoole_get_user_by_id.js
+```
+
+### check entrypoint grafana/k6
+```bash
+docker run \
+--name container_k6 \
+--rm \
+-it \
+--entrypoint \
+/bin/sh grafana/k6:1.1.0
 ```
 
 

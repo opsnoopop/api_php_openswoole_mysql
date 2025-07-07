@@ -2,4 +2,5 @@
 .dockerignore
 Dockerfile
 docker-compose.yml
-mysql
+k6/
+mysql/

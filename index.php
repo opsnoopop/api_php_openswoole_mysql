@@ -35,13 +35,13 @@ $objServer->on("request", function (Request $objRequest, Response $objResponse) 
                 ];
                 $objPDO = new PDO("mysql:host=container_mysql;dbname=testdb;charset=utf8mb4", "root", "password", $arrOptions);
 
-                // $objPDO->beginTransaction();
+                // $objPDO->beginTransaction(); // ACID (Atomicity Consistency Isolation Durability) step 1
                 
                 $objStatement = $objPDO->prepare("INSERT INTO users (username, email) VALUES (?, ?)");
                 $objStatement->execute([$arrData['username'], $arrData['email']]);
                 $intUserId = $objPDO->lastInsertId();
 
-                // $objPDO->commit();
+                // $objPDO->commit(); // ACID (Atomicity Consistency Isolation Durability) step 2
 
                 $objResponse->status(201);
                 $objResponse->end(json_encode([
@@ -49,7 +49,7 @@ $objServer->on("request", function (Request $objRequest, Response $objResponse) 
                     "user_id" => $intUserId
                 ]));
             } catch (PDOException $e) {
-                // $objPDO->rollback();
+                // $objPDO->rollback(); // ACID (Atomicity Consistency Isolation Durability) step 3
                 $objResponse->status(500);
                 $objResponse->end(json_encode(["error" => $e->getMessage()]));
             }
