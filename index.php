@@ -18,7 +18,7 @@ $objServer->on("request", function (Request $objRequest, Response $objResponse) 
         // Health Check
         $objResponse->status(200);
         $objResponse->end(json_encode([
-            "message" => "Hello World from PHP openswoole"
+            "message" => "Hello World from PHP"
         ]));
 
     } else if ($strRequestUri === '/users' && $strRequestMethod === 'POST') {
@@ -33,7 +33,7 @@ $objServer->on("request", function (Request $objRequest, Response $objResponse) 
                     PDO::ATTR_PERSISTENT         => true,
                     PDO::ATTR_TIMEOUT            => 60,
                 ];
-                $objPDO = new PDO("mysql:host=container_mysql;dbname=testdb;charset=utf8mb4", "root", "password", $arrOptions);
+                $objPDO = new PDO("mysql:host=container_mysql;dbname=testdb;charset=utf8mb4", "testuser", "testpass", $arrOptions);
 
                 // $objPDO->beginTransaction(); // ACID (Atomicity Consistency Isolation Durability) step 1
                 
@@ -71,7 +71,7 @@ $objServer->on("request", function (Request $objRequest, Response $objResponse) 
                     PDO::ATTR_PERSISTENT         => true,
                     PDO::ATTR_TIMEOUT            => 60,
                 ];
-                $objPDO = new PDO("mysql:host=container_mysql;dbname=testdb;charset=utf8mb4", "root", "password", $arrOptions);
+                $objPDO = new PDO("mysql:host=container_mysql;dbname=testdb;charset=utf8mb4", "testuser", "testpass", $arrOptions);
                 $objStatement = $objPDO->prepare("SELECT user_id, username, email FROM users WHERE user_id = ?");
                 $objStatement->execute([$intUserId]);
                 $arrRow = $objStatement->fetch();
