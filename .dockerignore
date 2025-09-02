@@ -4,3 +4,5 @@ Dockerfile
 docker-compose.yml
 k6/
 mysql/
+mysql_initdb/
+test*.sh
