@@ -34,7 +34,7 @@ const headers = {
 // Simulated user behavior
 export default function () {
   // GET
-  let res = http.get("http://container_php:9501");
+  let res = http.get("http://container_php:3000");
 
   // Validate response status
   check(res, { "status was 200": (r) => r.status == 200 });

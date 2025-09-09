@@ -3,10 +3,10 @@ use OpenSwoole\Http\Server;
 use OpenSwoole\Http\Request;
 use OpenSwoole\Http\Response;
 
-$objServer = new Server("0.0.0.0", 9501);
+$objServer = new Server("0.0.0.0", 3000);
 
 $objServer->on("start", function (Server $objServer) {
-    echo "Swoole HTTP Server started at http://0.0.0.0:9501\n";
+    echo "Swoole HTTP Server started at http://0.0.0.0:3000\n";
 });
 
 $objServer->on("request", function (Request $objRequest, Response $objResponse) {

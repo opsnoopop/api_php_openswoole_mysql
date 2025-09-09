@@ -1,0 +1,26 @@
+unable to connect to 172.16.0.11:3000 Connection refused
+unable to connect to 172.16.0.11:3000 Connection refused
+Running 10s test @ http://172.16.0.11:3000
+  2 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    73.30ms   22.29ms 169.79ms   71.61%
+    Req/Sec     6.83k     0.87k    9.49k    74.37%
+  135327 requests in 10.10s, 24.13MB read
+Requests/sec:  13404.18
+Transfer/sec:      2.39MB
+Running 10s test @ http://172.16.0.11:3000
+  2 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    66.98ms   21.53ms 168.52ms   73.38%
+    Req/Sec     7.46k   708.17     8.64k    86.36%
+  147170 requests in 10.02s, 26.25MB read
+Requests/sec:  14691.48
+Transfer/sec:      2.62MB
+Running 10s test @ http://172.16.0.11:3000
+  2 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    71.17ms   20.52ms 172.86ms   78.74%
+    Req/Sec     7.03k     0.87k    8.37k    79.00%
+  140048 requests in 10.09s, 24.98MB read
+Requests/sec:  13874.31
+Transfer/sec:      2.47MB

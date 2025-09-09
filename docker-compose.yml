@@ -7,7 +7,7 @@ services:
     container_name: container_php
     restart: always
     ports:
-      - "80:9501"
+      - "80:3000"
     depends_on:
       database:
         condition: service_healthy
